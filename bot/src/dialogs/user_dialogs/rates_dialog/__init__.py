@@ -1,0 +1,1 @@
+from .dialog import rates_dialog

@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "exchange-rate-bot"
+version = "0.1.0"
+description = ""
+authors = ["dmitriy <dmitriydmgora@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+aiogram = "^3.10.0"
+redis = "^5.0.7"
+nats-py = "^2.8.0"
+ormsgpack = "^1.5.0"
+aiogram-dialog = "^2.1.0"
+environs = "^11.0.0"
+fluentogram = "^1.1.7"
+taskiq = "^0.11.6"
+taskiq-nats = "^0.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

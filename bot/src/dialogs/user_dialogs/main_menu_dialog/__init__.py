@@ -1,0 +1,1 @@
+from .dialog import main_menu_dialog
