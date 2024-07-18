@@ -12,17 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 class Cache:
-    _instance = None
-
-    def __new__(cls, r: Redis = None):
-        if cls._instance is None:
-            if r is None:
-                raise ValueError("Redis instance must be provided for the first time.")
-            cls._instance = super().__new__(cls)
-            cls._instance._r = r
-        return cls._instance
-
-    def __init__(self, r: Redis = None):
+    def __init__(self, r: Redis):
         self._r = r
 
     async def set_data(self, key: KeyType = None,

@@ -32,16 +32,17 @@ scheduler = TaskiqScheduler(
         }
     ]
 ))
-async def parse_xml():
-    r = Redis(host=config.redis.host, port=config.redis.port)
-    session = AiohttpSession()
-    cache = Cache(r)
+async def parse_xml(session=None, cache=None):
+    if session is None:
+        session = AiohttpSession()
+    if cache is None:
+        r = Redis(host=config.redis.host, port=config.redis.port)
+        cache = Cache(r)
     try:
         client = await session.create_session()
         async with client.get('https://cbr.ru/scripts/XML_daily.asp') as response:
             content = await response.read()
     finally:
         await session.close()
-        await r.close()
     currencies = await asyncio.to_thread(_get_currencies, content)
     await cache.set_currency_data(key=CacheKeys.Currency.currencies(), mapping_values=currencies)

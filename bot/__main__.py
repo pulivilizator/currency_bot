@@ -43,7 +43,7 @@ async def main():
 
     setup_dialogs(dp)
     await bot.delete_webhook(drop_pending_updates=True)
-    await parse_xml.kiq()
+    await parse_xml(session, cache)
     try:
         await dp.start_polling(bot)
     finally:
